@@ -1,4 +1,4 @@
-#include "intal.h"
+#include "largeInt.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
