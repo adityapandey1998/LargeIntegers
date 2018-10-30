@@ -5,19 +5,19 @@
 #include <string.h>
 
 char* 	reverse(char* str);
-void* 	intal_create(const char* str);
-int 	intal_compare(void* intal1, void* intal2);
-char* 	intal2str(void* intal);
-void* 	intal_add(void*	intal1, void* intal2);
-void* 	intal_increment(void* intal);
-char* 	diff(void* intal1, void* intal2);
-void* 	intal_diff(void* intal1, void* intal2);
-void* 	intal_decrement(void* intal);
-void* 	intal_multiply_function(void* intal1, void* intal2);
-void* 	intal_multiply(void* intal1, void* intal2);
-void* 	intal_divide(void* intal1, void* intal2);
-void* 	intal_pow(void* intal1, void* intal2);
-void 	intal_destroy(void* intal);
+void* 	largeInt_create(const char* str);
+int 	largeInt_compare(void* largeInt1, void* largeInt2);
+char* 	largeInt2str(void* largeInt);
+void* 	largeInt_add(void*	largeInt1, void* largeInt2);
+void* 	largeInt_increment(void* largeInt);
+char* 	diff(void* largeInt1, void* largeInt2);
+void* 	largeInt_diff(void* largeInt1, void* largeInt2);
+void* 	largeInt_decrement(void* largeInt);
+void* 	largeInt_multiply_function(void* largeInt1, void* largeInt2);
+void* 	largeInt_multiply(void* largeInt1, void* largeInt2);
+void* 	largeInt_divide(void* largeInt1, void* largeInt2);
+void* 	largeInt_pow(void* largeInt1, void* largeInt2);
+void 	largeInt_destroy(void* largeInt);
 
 char* reverse(char* str)
 {
@@ -32,7 +32,7 @@ char* reverse(char* str)
 	return answer;
 }
 
-void* intal_create(const char* str)
+void* largeInt_create(const char* str)
 {
 
 	int len=strlen(str);	
@@ -57,14 +57,14 @@ void* intal_create(const char* str)
 	return number;
 }
 
-int intal_compare(void* intal1, void* intal2)
+int largeInt_compare(void* largeInt1, void* largeInt2)
 {
 
-	if(intal1==NULL || intal2==NULL) 
+	if(largeInt1==NULL || largeInt2==NULL) 
 		return -2;   
 
-	char* str1=(char*)intal1;
-	char* str2=(char*)intal2;
+	char* str1=(char*)largeInt1;
+	char* str2=(char*)largeInt2;
 	int len1=strlen(str1);
 	int len2=strlen(str2);
 
@@ -81,26 +81,26 @@ int intal_compare(void* intal1, void* intal2)
 	}
 }
 
-char* intal2str(void* intal)
+char* largeInt2str(void* largeInt)
 {
-	if(intal==NULL) 
+	if(largeInt==NULL) 
 	{
 		char* str=(char*)malloc(sizeof(char)*4);
 		strcpy(str,"NaN");
 		return str;
 	}
-	char* temp=(char*)intal;
+	char* temp=(char*)largeInt;
 	char* str=(char*)malloc(sizeof(char)*(strlen(temp)+1)); 
 	strcpy(str,temp);
 	return str;
 }
 
-char* diff(void* intal1, void* intal2)
+char* diff(void* largeInt1, void* largeInt2)
 {
 
-	char* str1=(char*)intal1;
+	char* str1=(char*)largeInt1;
 	int len1=strlen(str1);
-	char* str2=(char*)intal2;
+	char* str2=(char*)largeInt2;
 	int len2=strlen(str2);
 
 	char* answer=(char*)malloc(sizeof(char)*(len1+1));
@@ -147,41 +147,41 @@ char* diff(void* intal1, void* intal2)
 	return answer;	
 }
 
-void* intal_diff(void* intal1, void* intal2)
+void* largeInt_diff(void* largeInt1, void* largeInt2)
 {
 	
-	if(intal2==NULL || intal1==NULL) return NULL;
+	if(largeInt2==NULL || largeInt1==NULL) return NULL;
 
-	int n=intal_compare(intal1,intal2);  
+	int n=largeInt_compare(largeInt1,largeInt2);  
 	if(n==0)
-		return intal_create("0");
+		return largeInt_create("0");
 	if(n>0)
-		return diff(intal1,intal2);
+		return diff(largeInt1,largeInt2);
 	else
-		return diff(intal2,intal1);
+		return diff(largeInt2,largeInt1);
 }
 
-void* intal_decrement(void* intal)
+void* largeInt_decrement(void* largeInt)
 {
 
-	if(intal==NULL) 
+	if(largeInt==NULL) 
 		return NULL;
-	void *zero=intal_create("0");
-	if(intal_compare(intal,zero)==0) 
+	void *zero=largeInt_create("0");
+	if(largeInt_compare(largeInt,zero)==0) 
 		return zero;
 	free(zero);
-	return intal_diff(intal, intal_create("1"));
+	return largeInt_diff(largeInt, largeInt_create("1"));
 }
 
-void* intal_add(void* intal1, void* intal2)
+void* largeInt_add(void* largeInt1, void* largeInt2)
 {
 
-	if(intal1==NULL || intal2==NULL) 
+	if(largeInt1==NULL || largeInt2==NULL) 
 		return NULL;
 	
-	char* str1=(char*)intal1;
+	char* str1=(char*)largeInt1;
 	int len1=strlen(str1);
-	char* str2=(char*)intal2;
+	char* str2=(char*)largeInt2;
 	int len2=strlen(str2);
 
 	char* str1r=(char*)malloc(sizeof(char)*(len1+1));
@@ -236,18 +236,18 @@ void* intal_add(void* intal1, void* intal2)
 	return answer;
 }
 
-void* intal_increment(void* intal)
+void* largeInt_increment(void* largeInt)
 {
-	if(intal==NULL) 
+	if(largeInt==NULL) 
 		return NULL;    
-	return intal_add(intal, intal_create("1")); 
+	return largeInt_add(largeInt, largeInt_create("1")); 
 }
 
-void* intal_multiply_function(void* intal1, void* intal2)
+void* largeInt_multiply_function(void* largeInt1, void* largeInt2)
 {
-	char* str1=(char*)intal1;
+	char* str1=(char*)largeInt1;
 	int len1=strlen(str1),i;
-	char* str2=(char*)intal2;
+	char* str2=(char*)largeInt2;
 	int len2=strlen(str2);
 
 	char* str1r=(char*)malloc(sizeof(char)*(len1+1));
@@ -286,47 +286,47 @@ void* intal_multiply_function(void* intal1, void* intal2)
 	return answer;
 }
 
-void* intal_multiply(void* intal1, void* intal2)
+void* largeInt_multiply(void* largeInt1, void* largeInt2)
 {
-	if(intal1==NULL || intal2==NULL) 
+	if(largeInt1==NULL || largeInt2==NULL) 
 		return NULL;
-	void *zero=intal_create("0");
-	if(intal_compare(intal2,zero)==0 || intal_compare(intal1,zero)==0) return zero;
+	void *zero=largeInt_create("0");
+	if(largeInt_compare(largeInt2,zero)==0 || largeInt_compare(largeInt1,zero)==0) return zero;
 	free(zero);
-	if(intal_compare(intal1,intal2)<0) 
-		return intal_multiply_function(intal2,intal1);
+	if(largeInt_compare(largeInt1,largeInt2)<0) 
+		return largeInt_multiply_function(largeInt2,largeInt1);
 	else 
-		return intal_multiply_function(intal1,intal2);
+		return largeInt_multiply_function(largeInt1,largeInt2);
 }
 
-void* intal_divide(void* intal1, void* intal2)
+void* largeInt_divide(void* largeInt1, void* largeInt2)
 {
 
-	if(intal1==NULL || intal2==NULL) return NULL;
+	if(largeInt1==NULL || largeInt2==NULL) return NULL;
 
-	if(intal_compare(intal2,intal_create("0"))==0)	return NULL; //Division by zero
+	if(largeInt_compare(largeInt2,largeInt_create("0"))==0)	return NULL; //Division by zero
 
-	void *zero=intal_create("0");
+	void *zero=largeInt_create("0");
 
-	if(intal_compare(intal1,zero)==0)	return zero; 
-	if(intal_compare(intal1,intal2)<0)	return zero;
+	if(largeInt_compare(largeInt1,zero)==0)	return zero; 
+	if(largeInt_compare(largeInt1,largeInt2)<0)	return zero;
 	free(zero);
 
-	void *one=intal_create("1");
+	void *one=largeInt_create("1");
 
-	if(intal_compare(intal2,one)==0)	
+	if(largeInt_compare(largeInt2,one)==0)	
 	{
-		char* str1=(char*)intal1;
+		char* str1=(char*)largeInt1;
 		free(one);
-		return intal_create(str1);
+		return largeInt_create(str1);
 	}
 	free(one);
 	char digits[2];
 	digits[1]=0;
 	int i=0,j,k;
-	char* str1=(char*)intal1;
+	char* str1=(char*)largeInt1;
 	int len1=strlen(str1);
-	char* str2=(char*)intal2;
+	char* str2=(char*)largeInt2;
 	int len2=strlen(str2);
 	char*temp=(char*)malloc(sizeof(char)*(len2+2));
 	char*answer=(char*)malloc(sizeof(char)*(len1-len2+2));
@@ -340,9 +340,9 @@ void* intal_divide(void* intal1, void* intal2)
 	j=len2;
 	while(j<len1+1)
 	{
-		void* temp2=intal_create(temp);
-		void* op2=intal_create(str2);
-		if(intal_compare(temp2,op2)<0)
+		void* temp2=largeInt_create(temp);
+		void* op2=largeInt_create(str2);
+		if(largeInt_compare(temp2,op2)<0)
 		{	
 			free(temp2);
 		    temp[strlen(temp)+1]=0;
@@ -353,23 +353,23 @@ void* intal_divide(void* intal1, void* intal2)
 		        break;
 		    }
 		    temp[strlen(temp)]=str1[j];
-		    temp2=intal_create(temp);
+		    temp2=largeInt_create(temp);
 		    j++;
 		    answer[i]='0';
 		    i++;
 		}
 		k=0;
-		while(intal_compare(temp2,op2)>=0)
+		while(largeInt_compare(temp2,op2)>=0)
 		{
 		    k++;
 		    if(k<10)
 		    {
 		        digits[0]=k+'0';
-		        multiplier=intal_create(digits);
+		        multiplier=largeInt_create(digits);
 			}
 		    else
-		        multiplier=intal_create("10");
-		    op2=intal_multiply(intal2,multiplier);
+		        multiplier=largeInt_create("10");
+		    op2=largeInt_multiply(largeInt2,multiplier);
 		    free(multiplier);
 		}
 		if(j==len1)
@@ -386,10 +386,10 @@ void* intal_divide(void* intal1, void* intal2)
 		    answer[i++]='0';
 		
 		
-		op2=intal_diff(op2,intal2);
-		void* diff=intal_diff(temp2,op2);
+		op2=largeInt_diff(op2,largeInt2);
+		void* diff=largeInt_diff(temp2,op2);
 		free(temp);
-		temp=intal2str(diff);
+		temp=largeInt2str(diff);
 		for(k=0;k<strlen(temp);k++)
 		    temp[k]=temp[k];
 
@@ -407,33 +407,33 @@ void* intal_divide(void* intal1, void* intal2)
 	return answer;
 }
 
-void* intal_pow(void* intal1, void* intal2)
+void* largeInt_pow(void* largeInt1, void* largeInt2)
 {
 
-	if(intal1==NULL ||intal2==NULL)	return NULL;
+	if(largeInt1==NULL ||largeInt2==NULL)	return NULL;
 
-	char *str1=(char*)intal1;
-	char *str2=(char*)intal2;
+	char *str1=(char*)largeInt1;
+	char *str2=(char*)largeInt2;
 	
 	if(str1[0]=='0')
-		return intal_create("0");
+		return largeInt_create("0");
 
 	if(str2[0]=='0')
-		return intal_create("1");
+		return largeInt_create("1");
 
-	void *two=intal_create("2");
-	void *intal=intal_pow(intal1,(intal_divide(intal2,two)));
+	void *two=largeInt_create("2");
+	void *largeInt=largeInt_pow(largeInt1,(largeInt_divide(largeInt2,two)));
 	int len=strlen(str2);
 	free(two);
 	if((str2[len-1]-'0')%2!=0)
-		return intal_multiply(intal1,(intal_multiply(intal,intal)));
+		return largeInt_multiply(largeInt1,(largeInt_multiply(largeInt,largeInt)));
 
-	return intal_multiply(intal,intal);    
+	return largeInt_multiply(largeInt,largeInt);    
 }
 
-void intal_destroy(void* intal)
+void largeInt_destroy(void* largeInt)
 {
-	if(intal==NULL) 
+	if(largeInt==NULL) 
 		return;
-	free(intal);
+	free(largeInt);
 }
